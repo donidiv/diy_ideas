@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 export default function IdeaDetails () {
     return (
         <>
@@ -30,9 +29,12 @@ export default function IdeaDetails () {
                         <div className="col-lg-6 col-12">
                         <div>
                                     <ul style={{listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', gap: '2em'}}>
-                                        <li><FontAwesomeIcon icon={faHeart} /></li>
-                                        <li>edit</li>
-                                        <li>delete</li>
+
+                                        <li><a href="/likes" className="bi-heart custom-icon me-3"></a>0</li>
+                                        {/* <li><a href="/likes" className="bi-heart-fill product-icon"></a>0</li> */}
+                                        <li><a href="/likes" className="bi-pencil-square custom-icon me-3"></a>Edit</li>
+                                        <li><a href="/likes" className="bi-trash-fill custom-icon me-3"></a>Delete</li>
+
                                     </ul>
                                 </div>
                             <div className="product-info d-flex">
@@ -81,6 +83,48 @@ export default function IdeaDetails () {
                     </div>
                 </div>
             </section>
+
+
+
+            <section className="testimonial section-padding">
+                <div className="container">
+                    <div className="row">
+
+                        <div className="col-lg-9 mx-auto col-11">
+                            <h2 className="text-center">There are not comments for<br /> <span>XXX</span> yet...</h2>
+
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section className="testimonial section-padding">
+                <div className="container">
+                    <div className="row">
+
+                        <div className="col-lg-9 mx-auto col-11">
+                            <h2 className="text-center">Comments for<br /> <span>XXX</span> idea</h2>
+
+                            <div className="slick-testimonial">
+                                <div className="slick-testimonial-caption">
+                                    <p className="lead">Over three years in business, We`ve had the chance to work on a variety of projects, with companies Lorem ipsum dolor sit amet</p>
+
+                                    <div className="slick-testimonial-client d-flex align-items-center mt-4">
+                                        <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image me-3" alt="" />
+
+                                        <span><strong className="text-muted"><a href="/:userId/details">x user`s profile</a></strong></span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
 
 
            

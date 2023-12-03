@@ -9,6 +9,12 @@ export default function Users () {
                             <h2 className="mb-5">All <span>users</span></h2>
                         </div>
 
+
+                        <div>
+                            <h2>There are no users yet...</h2>
+                        </div>
+
+
                         <div className="col-lg-4 mb-4 col-12">
                             <div className="team-thumb d-flex align-items-center">
                                 <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image team-image me-4" alt="" />

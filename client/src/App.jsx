@@ -9,6 +9,9 @@ import Login from "./components/Login";
 import Create from "./components/Create";
 import IdeaDetails from "./components/IdeaDetails";
 
+import UserProfile from "./components/UserProfile";
+
+
 
 
 function App() {
@@ -24,6 +27,9 @@ function App() {
     <Login />
     <Create />
     <IdeaDetails />
+
+    <UserProfile />
+
 
 
 
