@@ -10,11 +10,11 @@ export default function Header () {
                         <strong><span>DIY</span> IDEAS</strong>
                     </a>
 
-                    <div className="d-lg-none">
+                    {/* <div className="d-lg-none">
                         <a href="sign-in.html" className="bi-person custom-icon me-3"></a>
 
                         <a href="product-detail.html" className="bi-bag custom-icon"></a>
-                    </div>
+                    </div> */}
 
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto">
@@ -46,8 +46,11 @@ export default function Header () {
                         </ul>
 
                         <div className="d-none d-lg-block">
-                            <a href="/userIdProfile" className="bi-person custom-icon me-3"></a>
+                            <a href="/:userIdProfile" className="bi-person custom-icon me-3">user x`s profile</a>
                         </div>
+                        
+                            
+                        
                     </div>
                 </div>
             </nav>

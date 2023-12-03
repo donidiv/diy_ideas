@@ -17,6 +17,9 @@ export default function Catalog () {
 
             <section className="products section-padding">
                 <div className="container">
+                    <div>
+                        <h2>There are no ideas yet...</h2>
+                    </div>
                     <div className="row">
                         <div className="col-lg-4 col-12">
                             <div className="product-thumb">
@@ -24,9 +27,7 @@ export default function Catalog () {
                                     <img src="images/product/nature-zen-3Dn1BZZv3m8-unsplash.jpeg" className="img-fluid product-image" alt="" />
                                 </a>
 
-                                {/* <div className="product-top d-flex">
-                                    <a href="/likes" className="bi-heart-fill product-icon ms-auto"></a>
-                                </div> */}
+                                
 
                                 <div className="product-info d-flex">
                                     <div>
