@@ -22,7 +22,7 @@ export default function IdeaDetails () {
 
                         <div className="col-lg-6 col-12">
                             <div className="product-thumb">
-                                <img src="images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" className="img-fluid product-image" alt="" />
+                                <img src="/images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" className="img-fluid product-image" alt="" />
                             </div>
                         </div>
 
@@ -112,7 +112,7 @@ export default function IdeaDetails () {
                                     <p className="lead">Over three years in business, We`ve had the chance to work on a variety of projects, with companies Lorem ipsum dolor sit amet</p>
 
                                     <div className="slick-testimonial-client d-flex align-items-center mt-4">
-                                        <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image me-3" alt="" />
+                                        <img src="/images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image me-3" alt="" />
 
                                         <span><strong className="text-muted"><a href="/:userId/details">x user`s profile</a></strong></span>
                                     </div>
