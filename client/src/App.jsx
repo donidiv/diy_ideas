@@ -14,8 +14,7 @@ import UserProfile from "./components/user-profile/UserProfile";
 
 function App() {
 
-    return (
-        
+    return (        
         <>
             <Header />
             <Home />
