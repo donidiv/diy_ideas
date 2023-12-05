@@ -11,7 +11,7 @@ import Login from "./components/login/Login";
 import Create from "./components/create/Create";
 import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
-
+// app
 
 function App() {
 
