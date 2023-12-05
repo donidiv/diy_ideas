@@ -1,3 +1,4 @@
+
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Home from "./components/home/Home";
@@ -9,7 +10,6 @@ import Login from "./components/login/Login";
 import Create from "./components/create/Create";
 import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
-
 
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
             <Footer />
         </>
     );
+
 }
 
 export default App;

@@ -1,5 +1,4 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 export default function IdeaDetails () {
     return (
         <>
@@ -30,10 +29,12 @@ export default function IdeaDetails () {
                         <div className="col-lg-6 col-12">
                         <div>
                                     <ul style={{listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', gap: '2em'}}>
+
                                         <li><a href="/likes" className="bi-heart custom-icon me-3"></a>0</li>
                                         {/* <li><a href="/likes" className="bi-heart-fill product-icon"></a>0</li> */}
                                         <li><a href="/likes" className="bi-pencil-square custom-icon me-3"></a>Edit</li>
                                         <li><a href="/likes" className="bi-trash-fill custom-icon me-3"></a>Delete</li>
+
                                     </ul>
                                 </div>
                             <div className="product-info d-flex">
@@ -84,6 +85,7 @@ export default function IdeaDetails () {
             </section>
 
 
+
             <section className="testimonial section-padding">
                 <div className="container">
                     <div className="row">
@@ -122,6 +124,7 @@ export default function IdeaDetails () {
                     </div>
                 </div>
             </section>
+
 
 
            
