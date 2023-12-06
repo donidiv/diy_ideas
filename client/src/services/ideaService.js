@@ -1,5 +1,6 @@
 import { request } from "../lib/request";
 
+
 const base_url = 'http://localhost:3030/jsonstore/ideas';
 
 export const getAll = async () => {
@@ -10,6 +11,7 @@ export const getAll = async () => {
 
 export const create = async (ideaData) => {
     const response = await fetch(base_url, {
+
         method: 'POST',
         headers: {
             'content-type': 'application/json'
