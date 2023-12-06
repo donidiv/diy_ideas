@@ -1,4 +1,12 @@
+import { useEffect, useState } from "react";
+import * as ideaService from '../../services/ideaService';
+
 export default function Catalog () {
+    const [ideas, setIdeas] = useState([]);
+    useEffect(() => {
+        ideaService.getAll()
+            .then(result => setIdeas(result));
+    }, []);
     return (
         <>
         <header className="site-header section-padding d-flex justify-content-center align-items-center">
