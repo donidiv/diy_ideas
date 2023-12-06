@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as ideaService from '../../services/ideaService';
 
 export default function Create () {
+
     const navigate = useNavigate();
     const createIdeaSubmitHandler = async (e) => {
         e.preventDefault();
@@ -14,6 +15,7 @@ export default function Create () {
         } catch (error) {
             console.log(error);            
         }
+
     };
     return (
         <section className="sign-in-form section-padding">
