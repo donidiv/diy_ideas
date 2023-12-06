@@ -1,9 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
+import * as ideaService from '../../services/ideaService';
+
 export default function Create () {
-    const createIdeaSubmitHandler = (e) => {
+    const navigate = useNavigate();
+    const createIdeaSubmitHandler = async (e) => {
         e.preventDefault();
 
-        const gameData = Object.fromEntries(new FormData(e.currentTarget));
-        console.log(gameData);
+        const ideaData = Object.fromEntries(new FormData(e.currentTarget));
+        try {
+            await ideaService.create(ideaData);
+            navigate('/ideas');
+        } catch (error) {
+            console.log(error);            
+        }
     };
     return (
         <section className="sign-in-form section-padding">
@@ -42,9 +52,9 @@ export default function Create () {
                                         </div>
 
                                         <div className="form-floating mb-4">
-                                    <textarea id="message" name="message" className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
+                                    <textarea id="description" name="description" className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
 
-                                    <label htmlFor="message">Description</label>
+                                    <label htmlFor="description">Description</label>
                                 </div>
                                   
                                         
