@@ -15,26 +15,29 @@ export default function Header () {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <a className="nav-link active" href="index.html">Home</a>
+                                <a className="nav-link active" href="/">Home</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="about.html">About</a>
+                                <a className="nav-link" href="/about">About</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="products.html">All DIY Ideas</a>
+                                <a className="nav-link" href="/ideas">All DIY Ideas</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/ideas/create">Create idea</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="">Users</a>
+                                <a className="nav-link" href="/users">Users</a>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="">Register</a>
+                                <a className="nav-link" href="/register">Register</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="">Login</a>
+                                <a className="nav-link" href="/login">Login</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="">Logout</a>

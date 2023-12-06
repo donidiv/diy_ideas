@@ -1,4 +1,10 @@
 export default function Create () {
+    const createIdeaSubmitHandler = (e) => {
+        e.preventDefault();
+
+        const gameData = Object.fromEntries(new FormData(e.currentTarget));
+        console.log(gameData);
+    };
     return (
         <section className="sign-in-form section-padding">
                 <div className="container">
@@ -12,7 +18,7 @@ export default function Create () {
 
                             <div className="row">
                                 <div className="col-lg-8 col-11 mx-auto">
-                                    <form role="form" 
+                                    <form role="form" onSubmit={createIdeaSubmitHandler} 
                                     // method="post"
                                     >
 
