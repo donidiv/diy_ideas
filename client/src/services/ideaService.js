@@ -7,13 +7,16 @@ export const getAll = async () => {
     return Object.values(result);
 };
 
+
 export const create = async (ideaData) => {
     const response = await fetch(base_url, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
+
         body: JSON.stringify(ideaData)
+
     });
 
     const result = await response.json();
