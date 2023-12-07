@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
 
+import * as commentService from '../../services/commentService';
+
 
 export default function IdeaDetails () {
     const [idea, setIdea] = useState({});
@@ -12,6 +14,20 @@ export default function IdeaDetails () {
         ideaService.getOne(ideaId)
             .then(setIdea);
     }, [ideaId]);
+
+
+    const addCommentHandler = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+
+        const newComment = await commentService.create(
+            ideaId,
+            formData.get('username'),
+            formData.get('message'),
+        );
+        console.log(newComment);
+    };
+
     return (
         <>
                     <header className="site-header section-padding d-flex justify-content-center align-items-center">
@@ -70,8 +86,9 @@ export default function IdeaDetails () {
 
                             <div className="row">
                                 <div className="col-lg-8 col-11 mx-auto">
-                        <form role="form">
+                        <form role="form" onSubmit={addCommentHandler}>
                         <div className="form-floating mb-4">
+                            <input type="text" name="username" placeholder="username"/>
                                     <textarea id="message" name="message" className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
 
                                     <label htmlFor="message">Write a comment</label>
