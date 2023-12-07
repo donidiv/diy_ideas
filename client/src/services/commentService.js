@@ -3,6 +3,7 @@ import * as request from '../lib/request';
 const base_url = 'http://localhost:3030/jsonstore/comments';
 
 
+
 export const getAll = async (ideaId) => {
     
     const query = new URLSearchParams({
@@ -13,6 +14,7 @@ export const getAll = async (ideaId) => {
     
     //TODO: temp solution until migration to collections service
     return Object.values(result).filter(comment => comment.ideaId === ideaId);
+
 };
 
 
