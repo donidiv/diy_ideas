@@ -18,7 +18,9 @@ export default function IdeaDetails () {
         ideaService.getOne(ideaId)
             .then(setIdea);
 
-        commentService.getAll()
+
+        commentService.getAll(ideaId)
+
             .then(setComments);
     }, [ideaId]);
 
