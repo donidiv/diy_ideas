@@ -32,7 +32,7 @@ export default function IdeaDetails () {
             formData.get('username'),
             formData.get('message'),
         );
-        console.log(newComment);
+        setComments(state => [...state, newComment]);
     };
 
     return (
