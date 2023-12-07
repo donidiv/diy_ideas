@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import * as ideaService from '../../services/ideaService';
 
 import * as commentService from '../../services/commentService';
+
 import CommentItem from "./CommentItem";
+
 
 
 export default function IdeaDetails () {
