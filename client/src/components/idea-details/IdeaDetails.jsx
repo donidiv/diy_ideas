@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
 
+
 export default function IdeaDetails () {
     const [idea, setIdea] = useState({});
     const {ideaId} = useParams();
