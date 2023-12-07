@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
+
 import * as commentService from '../../services/commentService';
+
 
 export default function IdeaDetails () {
     const [idea, setIdea] = useState({});
@@ -12,6 +14,7 @@ export default function IdeaDetails () {
         ideaService.getOne(ideaId)
             .then(setIdea);
     }, [ideaId]);
+
 
     const addCommentHandler = async (e) => {
         e.preventDefault();
@@ -24,6 +27,7 @@ export default function IdeaDetails () {
         );
         console.log(newComment);
     };
+
     return (
         <>
                     <header className="site-header section-padding d-flex justify-content-center align-items-center">
