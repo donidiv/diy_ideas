@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import * as ideaService from '../../services/ideaService';
+
 import CatalogItem from "./CatalogItem";
+
 
 export default function Catalog () {
     const [ideas, setIdeas] = useState([]);
