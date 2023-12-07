@@ -1,5 +1,17 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import * as ideaService from '../../services/ideaService';
+
 
 export default function IdeaDetails () {
+    const [idea, setIdea] = useState({});
+    const {ideaId} = useParams();
+
+    useEffect(() => {
+        ideaService.getOne(ideaId)
+            .then(setIdea);
+    }, [ideaId]);
     return (
         <>
                     <header className="site-header section-padding d-flex justify-content-center align-items-center">
@@ -22,7 +34,7 @@ export default function IdeaDetails () {
 
                         <div className="col-lg-6 col-12">
                             <div className="product-thumb">
-                                <img src="/images/product/evan-mcdougall-qnh1odlqOmk-unsplash.jpeg" className="img-fluid product-image" alt="" />
+                                <img src={idea.image} className="img-fluid product-image" alt={idea.name} />
                             </div>
                         </div>
 
@@ -41,9 +53,9 @@ export default function IdeaDetails () {
                                 
                                 <div>
                                     
-                                    <h2 className="product-title mb-0">Tree pot</h2>
+                                    <h2 className="product-title mb-0">{idea.name}</h2>
                                     
-                                    <p className="product-p">Original package design from house</p>
+                                    <p className="product-p">{idea.category}</p>
                                 </div>
 
                                 {/* <small className="product-price text-muted ms-auto mt-auto mb-5">$25</small> */}
@@ -53,7 +65,7 @@ export default function IdeaDetails () {
 
                                 <strong className="d-block mt-4 mb-2">Description</strong>
 
-                                <p className="lead mb-5">Over three years in business, We`ve had the chance to work on a variety of projects, with companies.</p>
+                                <p className="lead mb-5">{idea.description}</p>
                             </div>
 
                             <div className="row">

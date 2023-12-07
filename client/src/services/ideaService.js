@@ -8,6 +8,10 @@ export const getAll = async () => {
     return Object.values(result);
 };
 
+export const getOne = async (ideaId) => {
+    const result = await request.get(`${base_url}/${ideaId}`);
+    return result;
+};
 
 export const create = async (ideaData) => {
     
