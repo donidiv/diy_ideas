@@ -5,14 +5,21 @@ import * as ideaService from '../../services/ideaService';
 
 import * as commentService from '../../services/commentService';
 
+import CommentItem from "./CommentItem";
+
+
 
 export default function IdeaDetails () {
     const [idea, setIdea] = useState({});
+    const [comments, setComments] = useState([]);
     const {ideaId} = useParams();
 
     useEffect(() => {
         ideaService.getOne(ideaId)
             .then(setIdea);
+
+        commentService.getAll()
+            .then(setComments);
     }, [ideaId]);
 
 
@@ -114,13 +121,13 @@ export default function IdeaDetails () {
             </section>
 
 
-
-            <section className="testimonial section-padding">
+            {comments.length === 0 && (
+                <section className="testimonial section-padding">
                 <div className="container">
                     <div className="row">
 
                         <div className="col-lg-9 mx-auto col-11">
-                            <h2 className="text-center">There are not comments for<br /> <span>XXX</span> yet...</h2>
+                            <h2 className="text-center">There are not comments for<br /> <span>{idea.name}</span> yet...</h2>
 
                             
                         </div>
@@ -128,35 +135,32 @@ export default function IdeaDetails () {
                     </div>
                 </div>
             </section>
+            )}
 
-            <section className="testimonial section-padding">
+            
+
+            {comments.length > 0 && (
+                <section className="testimonial section-padding">
                 <div className="container">
                     <div className="row">
 
-                        <div className="col-lg-9 mx-auto col-11">
-                            <h2 className="text-center">Comments for<br /> <span>XXX</span> idea</h2>
+                    <div className="col-lg-9 mx-auto col-11">
+                            <h2 className="text-center">Comments for<br /> <span>{idea.name}</span></h2>
 
-                            <div className="slick-testimonial">
-                                <div className="slick-testimonial-caption">
-                                    <p className="lead">Over three years in business, We`ve had the chance to work on a variety of projects, with companies Lorem ipsum dolor sit amet</p>
-
-                                    <div className="slick-testimonial-client d-flex align-items-center mt-4">
-                                        <img src="/images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image me-3" alt="" />
-
-                                        <span><strong className="text-muted"><a href="/:userId/details">x user`s profile</a></strong></span>
-                                    </div>
-                                </div>
-                                
-                            </div>
+                            
                         </div>
+
+                        {comments.map((comment) => (
+                            <CommentItem key={comment._id} {...comment}/>
+                        ))}
 
                     </div>
                 </div>
             </section>
 
+            )}
 
-
-           
+                      
 
             </>
     );
