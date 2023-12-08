@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
@@ -14,13 +14,21 @@ import UserProfile from "./components/user-profile/UserProfile";
 import { useState } from "react";
 
 import AuthContext from "./contexts/authContext";
+import * as authService from './services/authService';
+import Path from "./paths";
 
 
 function App() {
+    const navigate = useNavigate();
     const [auth, setAuth] = useState({});
 
-    const loginSubmitHandler = (values) => {
-        console.log(values);
+    const loginSubmitHandler = async (values) => {
+        const result = await authService.login(values.email, values.password);
+        console.log(result);
+
+        setAuth(result);
+
+        navigate(Path.Home);
     };
 
     return (        
@@ -28,17 +36,17 @@ function App() {
             <Header />
 
             <Routes>
-                <Route path='/' element={<Home />}/>
-                <Route path='/about' element={<About />}/>
-                <Route path='/ideas' element={<Catalog />}/>
-                <Route path='/users' element={<Users />}/>
-                <Route path='/register' element={<Register />}/>
-                <Route path='/login' element={<Login />}/>
-                <Route path='/ideas/create' element={<Create />}/>
+                <Route path={Path.Home} element={<Home />}/>
+                <Route path={Path.About} element={<About />}/>
+                <Route path={Path.Ideas} element={<Catalog />}/>
+                <Route path={Path.Users} element={<Users />}/>
+                <Route path={Path.Register} element={<Register />}/>
+                <Route path={Path.Login} element={<Login />}/>
+                <Route path={Path.Create} element={<Create />}/>
 
-                <Route path='/ideas/:ideaId' element={<IdeaDetails />}/>
+                <Route path={Path.IdeaDetails} element={<IdeaDetails />}/>
 
-                <Route path='/users/:userId' element={<UserProfile />}/>
+                <Route path={Path.UserProfile} element={<UserProfile />}/>
             </Routes>
 
             <Footer />
