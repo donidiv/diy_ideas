@@ -1,5 +1,6 @@
 import useForm from "../../hooks/useForm";
 
+
 const LoginFormKeys = {
     Email: 'email',
     Password: 'password',
@@ -11,6 +12,7 @@ export default function Login ({
     const {values, onChange, onSubmit} = useForm(loginSubmitHandler, {
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
+
     });
     return (
         <section className="sign-in-form section-padding">
@@ -26,30 +28,38 @@ export default function Login ({
                                     <form role="form" onSubmit={onSubmit}>
 
                                         <div className="form-floating mb-4 p-0">
+
                                             <input
                                             type="email"
                                             name={LoginFormKeys.Email}
+
                                             id="email"
                                             pattern="[^ @]*@[^ @]*"
                                             className="form-control"
                                             placeholder="Email address"
                                             required
                                             onChange={onChange}
+
                                             value={values[LoginFormKeys.Email]} />
+
 
                                             <label htmlFor="email">Email address</label>
                                         </div>
 
                                         <div className="form-floating p-0">
+
                                             <input
                                             type="password"
                                             name={LoginFormKeys.Password}
+
                                             id="password"
                                             className="form-control"
                                             placeholder="Password"
                                             required
                                             onChange={onChange}
+
                                             value={values[LoginFormKeys.Password]} />
+
 
                                             <label htmlFor="password">Password</label>
                                         </div>
