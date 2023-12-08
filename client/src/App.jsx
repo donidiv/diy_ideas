@@ -12,8 +12,9 @@ import Create from "./components/create/Create";
 import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
 import { useState } from "react";
+
 import AuthContext from "./contexts/authContext";
-// app
+
 
 function App() {
     const [auth, setAuth] = useState({});
