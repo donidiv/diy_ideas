@@ -1,4 +1,10 @@
+import useForm from "../../hooks/useForm";
+
 export default function Login () {
+    const {values, onChange, onSubmit} = useForm({
+        email: '',
+        password: '',
+    });
     return (
         <section className="sign-in-form section-padding">
                 <div className="container">
@@ -10,16 +16,31 @@ export default function Login () {
 
                             <div className="row">
                                 <div className="col-lg-8 col-11 mx-auto">
-                                    <form role="form" method="post">
+                                    <form role="form" onSubmit={onSubmit}>
 
                                         <div className="form-floating mb-4 p-0">
-                                            <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" className="form-control" placeholder="Email address" required />
+                                            <input type="email"
+                                            name="email"
+                                            id="email"
+                                            pattern="[^ @]*@[^ @]*"
+                                            className="form-control"
+                                            placeholder="Email address"
+                                            required
+                                            onChange={onChange}
+                                            value={values.email} />
 
                                             <label htmlFor="email">Email address</label>
                                         </div>
 
                                         <div className="form-floating p-0">
-                                            <input type="password" name="password" id="password" className="form-control" placeholder="Password" required />
+                                            <input type="password"
+                                            name="password"
+                                            id="password"
+                                            className="form-control"
+                                            placeholder="Password"
+                                            required
+                                            onChange={onChange}
+                                            value={values.password} />
 
                                             <label htmlFor="password">Password</label>
                                         </div>
