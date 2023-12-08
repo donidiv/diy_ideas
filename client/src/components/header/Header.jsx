@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header () {
     return (
         <nav className="navbar navbar-expand-lg">
@@ -6,47 +8,47 @@ export default function Header () {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <a className="navbar-brand" href="index.html">
+                    <Link className="navbar-brand" to="/">
                         <strong><span>DIY</span> IDEAS</strong>
-                    </a>
+                    </Link>
 
 
 
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <a className="nav-link active" href="/">Home</a>
+                                <Link className="nav-link active" to="/">Home</Link>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="/about">About</a>
+                                <Link className="nav-link" to="/about">About</Link>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="/ideas">All DIY Ideas</a>
+                                <Link className="nav-link" to="/ideas">All DIY Ideas</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/ideas/create">Create idea</a>
-                            </li>
-
-                            <li className="nav-item">
-                                <a className="nav-link" href="/users">Users</a>
+                                <Link className="nav-link" to="/ideas/create">Create idea</Link>
                             </li>
 
                             <li className="nav-item">
-                                <a className="nav-link" href="/register">Register</a>
+                                <Link className="nav-link" to="/users">Users</Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/register">Register</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="/login">Login</a>
+                                <Link className="nav-link" to="/login">Login</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="">Logout</a>
+                                <Link className="nav-link" to="/logout">Logout</Link>
                             </li>
                         </ul>
 
                         <div className="d-none d-lg-block">
 
-                            <a href="/:userIdProfile" className="bi-person custom-icon me-3">user x`s profile</a>
+                            <Link to="/users/me" className="bi-person custom-icon me-3">user x`s profile</Link>
                         </div>
                         
                             
