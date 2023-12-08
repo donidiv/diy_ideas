@@ -20,7 +20,7 @@ export default function Users () {
                                 <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image team-image me-4" alt="" />
 
                                 <div className="team-info">
-                                    <h5 className="mb-0"><a href="/:userId/details">Don</a></h5>
+                                    <h5 className="mb-0"><a href="/users/:userId">Don</a></h5>
                                     <strong className="text-muted">Product, VP</strong>
 
                                     {/* <!-- Button trigger modal --> */}

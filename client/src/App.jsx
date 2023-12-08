@@ -30,7 +30,7 @@ function App() {
 
                 <Route path='/ideas/:ideaId' element={<IdeaDetails />}/>
 
-                <Route path='/users/:userId/details' element={<UserProfile />}/>
+                <Route path='/users/:userId' element={<UserProfile />}/>
             </Routes>
 
             <Footer />
