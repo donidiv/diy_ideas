@@ -11,9 +11,15 @@ import Login from "./components/login/Login";
 import Create from "./components/create/Create";
 import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
+import { useState } from "react";
 // app
 
 function App() {
+    const [auth, setAuth] = useState({});
+
+    const loginSubmitHandler = (values) => {
+        console.log(values);
+    };
 
     return (        
         <>
@@ -25,7 +31,7 @@ function App() {
                 <Route path='/ideas' element={<Catalog />}/>
                 <Route path='/users' element={<Users />}/>
                 <Route path='/register' element={<Register />}/>
-                <Route path='/login' element={<Login />}/>
+                <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler}/>}/>
                 <Route path='/ideas/create' element={<Create />}/>
 
                 <Route path='/ideas/:ideaId' element={<IdeaDetails />}/>
