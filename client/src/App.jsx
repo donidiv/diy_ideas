@@ -12,6 +12,7 @@ import Create from "./components/create/Create";
 import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
 import { useState } from "react";
+import AuthContext from "./contexts/authContext";
 // app
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
     };
 
     return (        
-        <>
+        <AuthContext.Provider value={{loginSubmitHandler}}>
             <Header />
 
             <Routes>
@@ -31,7 +32,7 @@ function App() {
                 <Route path='/ideas' element={<Catalog />}/>
                 <Route path='/users' element={<Users />}/>
                 <Route path='/register' element={<Register />}/>
-                <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler}/>}/>
+                <Route path='/login' element={<Login />}/>
                 <Route path='/ideas/create' element={<Create />}/>
 
                 <Route path='/ideas/:ideaId' element={<IdeaDetails />}/>
@@ -40,7 +41,7 @@ function App() {
             </Routes>
 
             <Footer />
-        </>
+        </AuthContext.Provider>
     );
 
 }
