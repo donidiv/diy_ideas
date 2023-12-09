@@ -1,11 +1,12 @@
 import * as request from "../lib/request";
 
 
-const base_url = 'http://localhost:3030/jsonstore/ideas';
+const base_url = 'http://localhost:3030/data/ideas';
 
 export const getAll = async () => {
     const result = await request.get(base_url);
-    return Object.values(result);
+    console.log(result);
+    return result;
 };
 
 export const getOne = async (ideaId) => {
