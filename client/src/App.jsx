@@ -40,6 +40,22 @@ function App() {
         email: auth.email,
         isAuthenticated: !!auth.email,
     };
+    const registerSubmitHandler = async (values) => {
+        console.log(values);
+        const result = await authService.register(values.email, values.password);
+
+        setAuth(result);
+
+        navigate(Path.Home);
+    };
+
+    const values = {
+        loginSubmitHandler,
+        registerSubmitHandler,
+        username: auth.username,
+        email: auth.email,
+        isAuthenticated: !!auth.email,
+    };
 
     return (        
         <AuthContext.Provider value={values}>
