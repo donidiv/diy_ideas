@@ -49,8 +49,7 @@ function App() {
         navigate(Path.Home);
     };
 
-  
-   
+
     const logoutHandler = () => {
         setAuth({});
         // navigate(Path.Home);
