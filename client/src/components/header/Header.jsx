@@ -7,11 +7,10 @@ export default function Header () {
     const {
         isAuthenticated,
         username,
+
         email
     } = useContext(AuthContext);
-    console.log(isAuthenticated);
-    console.log(username);
-    console.log(email);
+    
     return (
         <nav className="navbar navbar-expand-lg">
                 <div className="container">
@@ -74,7 +73,9 @@ export default function Header () {
                         {isAuthenticated && 
                         (<div className="d-none d-lg-block">
 
+
                         <Link to="/users/me" className="bi-person custom-icon me-3">{username}`s profile</Link>
+
                     </div>)}
 
 
