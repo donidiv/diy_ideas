@@ -29,8 +29,6 @@ function App() {
         setAuth(result);
 
         navigate(Path.Home);
-    };
-
     const registerSubmitHandler = async (values) => {
         console.log(values);
     };

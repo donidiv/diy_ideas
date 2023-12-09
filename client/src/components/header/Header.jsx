@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../contexts/authContext";
 
+
 export default function Header () {
     const {
         isAuthenticated,
@@ -24,6 +25,7 @@ export default function Header () {
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
                                 <Link className="nav-link active" to="/">Home</Link>
+
                             </li>
 
                             <li className="nav-item">
@@ -32,10 +34,12 @@ export default function Header () {
 
                             <li className="nav-item">
                                 <Link className="nav-link" to="/ideas">All DIY Ideas</Link>
+
                             </li>
                             
 
                             <li className="nav-item">
+
                                 <Link className="nav-link" to="/users">Users</Link>
                             </li>
                             
@@ -62,11 +66,13 @@ export default function Header () {
                         </ul>
 
 
+
                         {isAuthenticated && 
                         (<div className="d-none d-lg-block">
 
                         <Link to="/users/me" className="bi-person custom-icon me-3">user x`s profile</Link>
                     </div>)}
+
 
                     </div>
                 </div>
