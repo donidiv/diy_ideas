@@ -35,6 +35,7 @@ export default function IdeaDetails () {
             ideaId,
             formData.get('message'),
         );
+        newComment.owner = {email};
         setComments(state => [...state, {...newComment, author: {email}}]);
     };
 
@@ -153,12 +154,8 @@ export default function IdeaDetails () {
                             
                         </div>
 
-                        {comments.map(({_id, text, owner:{email}}) => (
-                            // <CommentItem key={comment._id} {...comment}/>
-                            // todo with CommentItem!!!!
-                            <p key={_id}>{email}: {text}</p>
-                            // {email}
-                            // console.log(comment.owner.email)
+                        {comments.map((comment) => (
+                            <CommentItem key={comment._id} {...comment}/>
                         ))}
 
                     </div>
