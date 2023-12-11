@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
@@ -6,10 +6,12 @@ import * as ideaService from '../../services/ideaService';
 import * as commentService from '../../services/commentService';
 
 import CommentItem from "./CommentItem";
+import AuthContext from "../../contexts/authContext";
 
 
 
 export default function IdeaDetails () {
+    const {email} = useContext(AuthContext);
     const [idea, setIdea] = useState({});
     const [comments, setComments] = useState([]);
     const {ideaId} = useParams();
@@ -31,10 +33,9 @@ export default function IdeaDetails () {
 
         const newComment = await commentService.create(
             ideaId,
-            formData.get('username'),
             formData.get('message'),
         );
-        setComments(state => [...state, newComment]);
+        setComments(state => [...state, {...newComment, author: {email}}]);
     };
 
     return (
@@ -97,7 +98,7 @@ export default function IdeaDetails () {
                                 <div className="col-lg-8 col-11 mx-auto">
                         <form role="form" onSubmit={addCommentHandler}>
                         <div className="form-floating mb-4">
-                            <input type="text" name="username" placeholder="username"/>
+                            {/* <input type="text" name="username" placeholder="username"/> */}
                                     <textarea id="message" name="message" className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
 
                                     <label htmlFor="message">Write a comment</label>
@@ -152,8 +153,12 @@ export default function IdeaDetails () {
                             
                         </div>
 
-                        {comments.map((comment) => (
-                            <CommentItem key={comment._id} {...comment}/>
+                        {comments.map(({_id, text, owner:{email}}) => (
+                            // <CommentItem key={comment._id} {...comment}/>
+                            // todo with CommentItem!!!!
+                            <p key={_id}>{email}: {text}</p>
+                            // {email}
+                            // console.log(comment.owner.email)
                         ))}
 
                     </div>
