@@ -13,7 +13,7 @@ import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
 import { useState } from "react";
 
-import AuthContext from "./contexts/authContext";
+import {AuthProvider} from "./contexts/authContext";
 import * as authService from './services/authService';
 import Path from "./paths";
 import Logout from "./components/logout/Logout";
@@ -66,7 +66,7 @@ function App() {
     };
 
     return (        
-        <AuthContext.Provider value={values}>
+        <AuthProvider value={values}>
             <Header />
 
             <Routes>
@@ -85,7 +85,7 @@ function App() {
             </Routes>
 
             <Footer />
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 
 }
