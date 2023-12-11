@@ -11,7 +11,7 @@ import AuthContext from "../../contexts/authContext";
 
 
 export default function IdeaDetails () {
-    const {email} = useContext(AuthContext);
+    const {username} = useContext(AuthContext);
     const [idea, setIdea] = useState({});
     const [comments, setComments] = useState([]);
     const {ideaId} = useParams();
@@ -35,8 +35,8 @@ export default function IdeaDetails () {
             ideaId,
             formData.get('message'),
         );
-        newComment.owner = {email};
-        setComments(state => [...state, {...newComment, author: {email}}]);
+        newComment.owner = {username};
+        setComments(state => [...state, {...newComment, author: {username}}]);
     };
 
     return (

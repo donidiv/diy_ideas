@@ -1,6 +1,6 @@
 export default function CommentItem({
     text,
-    owner:{email},
+    owner:{username},
 }) {
     return (<div className="slick-testimonial">
         <div className="slick-testimonial-caption">
@@ -9,7 +9,7 @@ export default function CommentItem({
             <div className="slick-testimonial-client d-flex align-items-center mt-4">
                 <img src="/images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image me-3" alt="" />
 
-                <span><strong className="text-muted"><a href="/:userId/details">{email}</a></strong></span>
+                <span><strong className="text-muted"><a href="/:userId/details">{username}</a></strong></span>
             </div>
         </div>
 
