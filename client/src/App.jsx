@@ -39,7 +39,7 @@ function App() {
     };
     const registerSubmitHandler = async (values) => {
         console.log(values);
-        const result = await authService.register(values.email, values.password);
+        const result = await authService.register(values.email, values.password, values.username);
 
         setAuth(result);
 
@@ -64,6 +64,8 @@ function App() {
         email: auth.email,
         isAuthenticated: !!auth.accessToken,
     };
+
+    // console.log(auth.username);
 
     return (        
         <AuthProvider value={values}>
