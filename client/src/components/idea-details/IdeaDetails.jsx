@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
@@ -7,13 +7,16 @@ import * as commentService from '../../services/commentService';
 
 import CommentItem from "./CommentItem";
 import AuthContext from "../../contexts/authContext";
+import useForm from "../../hooks/useForm";
+import reducer from "./commentReducer";
 
 
 
 export default function IdeaDetails () {
-    const {username} = useContext(AuthContext);
+    const {username, userId} = useContext(AuthContext);
     const [idea, setIdea] = useState({});
-    const [comments, setComments] = useState([]);
+    // const [comments, setComments] = useState([]);
+    const [comments, dispatch] = useReducer(reducer, []);
     const {ideaId} = useParams();
 
     useEffect(() => {
@@ -22,22 +25,34 @@ export default function IdeaDetails () {
 
 
         commentService.getAll(ideaId)
-
-            .then(setComments);
+            .then((result) => {
+                dispatch({
+                    type: 'GET_ALL_COMMENTS',
+                    payload: result,
+                });
+            });
     }, [ideaId]);
 
 
-    const addCommentHandler = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
+    // const addCommentHandler = async (e) => {
+    //     e.preventDefault();
+    //     const formData = new FormData(e.currentTarget);
+    const addCommentHandler = async (values) => {
 
         const newComment = await commentService.create(
             ideaId,
-            formData.get('message'),
+            values.message,
         );
+        console.log(values.message);
         newComment.owner = {username};
-        setComments(state => [...state, {...newComment, author: {username}}]);
+        dispatch({
+            type: 'ADD_COMMENT',
+            payload: newComment,
+        });
     };
+    const { values, onChange, onSubmit } = useForm(addCommentHandler, {
+        message: '',
+    });
 
     return (
         <>
@@ -69,10 +84,16 @@ export default function IdeaDetails () {
                         <div>
                                     <ul style={{listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', gap: '2em'}}>
 
-                                        <li><a href="/likes" className="bi-heart custom-icon me-3"></a>0</li>
+                                        {userId !== idea._ownerId & !!username && (
+                                            <li><a href="/likes" className="bi-heart custom-icon me-3"></a>0</li>
+                                        )}
                                         {/* <li><a href="/likes" className="bi-heart-fill product-icon"></a>0</li> */}
-                                        <li><a href="/likes" className="bi-pencil-square custom-icon me-3"></a>Edit</li>
-                                        <li><a href="/likes" className="bi-trash-fill custom-icon me-3"></a>Delete</li>
+                                        {userId === idea._ownerId && (
+                                            <li><a href="/likes" className="bi-pencil-square custom-icon me-3"></a>Edit</li>                                            
+                                        )}
+                                        {userId === idea._ownerId && (
+                                        <li><a href="/likes" className="bi-trash-fill custom-icon me-3"></a>Delete</li>                                            
+                                        )}
 
                                     </ul>
                                 </div>
@@ -97,10 +118,10 @@ export default function IdeaDetails () {
 
                             <div className="row">
                                 <div className="col-lg-8 col-11 mx-auto">
-                        <form role="form" onSubmit={addCommentHandler}>
+                        <form role="form" onSubmit={onSubmit}>
                         <div className="form-floating mb-4">
                             {/* <input type="text" name="username" placeholder="username"/> */}
-                                    <textarea id="message" name="message" className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
+                                    <textarea id="message" name="message" value={values.message} onChange={onChange} className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
 
                                     <label htmlFor="message">Write a comment</label>
                                 </div>
