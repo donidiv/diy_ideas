@@ -8,7 +8,10 @@ export default function Catalog () {
     const [ideas, setIdeas] = useState([]);
     useEffect(() => {
         ideaService.getAll()
-            .then(result => setIdeas(result));
+            .then(result => setIdeas(result))
+            .catch(err => {
+                console.log(err);
+            });
     }, []);
     return (
         <>
