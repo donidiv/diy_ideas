@@ -15,6 +15,7 @@ import UserProfile from "./components/user-profile/UserProfile";
 import {AuthProvider} from "./contexts/authContext";
 import Path from "./paths";
 import Logout from "./components/logout/Logout";
+import IdeaEdit from "./components/idea-edit/IdeaEdit";
 
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
                 <Route path={Path.Create} element={<Create />}/>
 
                 <Route path={Path.IdeaDetails} element={<IdeaDetails />}/>
-
+                <Route path={Path.IdeaEdit} element={<IdeaEdit />}/>
+            
                 <Route path={Path.UserProfile} element={<UserProfile />}/>
                 <Route path={Path.Logout} element={<Logout />}/>
             </Routes>
