@@ -9,6 +9,7 @@ const Path = {
     IdeaDetails: '/ideas/:ideaId',
     UserProfile: '/users/:userId',
     Logout: '/logout',
+    IdeaEdit: '/ideas/:ideaId/edit',
 
 
 };

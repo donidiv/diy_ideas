@@ -1,5 +1,5 @@
-import { useContext, useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useMemo, useReducer, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
 
@@ -9,6 +9,8 @@ import CommentItem from "./CommentItem";
 import AuthContext from "../../contexts/authContext";
 import useForm from "../../hooks/useForm";
 import reducer from "./commentReducer";
+import { pathToUrl } from "../../utils/pathUtils";
+import Path from "../../paths";
 
 
 
@@ -50,9 +52,11 @@ export default function IdeaDetails () {
             payload: newComment,
         });
     };
-    const { values, onChange, onSubmit } = useForm(addCommentHandler, {
+    const initialValues = useMemo(() => ({
         message: '',
-    });
+    }), []);
+
+    const {values, onChange, onSubmit} = useForm(addCommentHandler, initialValues);
 
     return (
         <>
@@ -89,10 +93,10 @@ export default function IdeaDetails () {
                                         )}
                                         {/* <li><a href="/likes" className="bi-heart-fill product-icon"></a>0</li> */}
                                         {userId === idea._ownerId && (
-                                            <li><a href="/likes" className="bi-pencil-square custom-icon me-3"></a>Edit</li>                                            
+                                            <li><Link to={pathToUrl(Path.IdeaEdit, {ideaId})} className="bi-pencil-square custom-icon me-3"></Link>Edit</li>                                            
                                         )}
                                         {userId === idea._ownerId && (
-                                        <li><a href="/likes" className="bi-trash-fill custom-icon me-3"></a>Delete</li>                                            
+                                        <li><Link to="/ideas/:ideaId/delete" className="bi-trash-fill custom-icon me-3"></Link>Delete</li>                                            
                                         )}
 
                                     </ul>
