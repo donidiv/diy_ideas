@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/header/Header";
@@ -9,7 +10,6 @@ import Users from "./components/users-catalog/Users";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import Create from "./components/create/Create";
-import IdeaDetails from "./components/idea-details/IdeaDetails";
 import UserProfile from "./components/user-profile/UserProfile";
 
 import {AuthProvider} from "./contexts/authContext";
@@ -18,6 +18,9 @@ import Logout from "./components/logout/Logout";
 import IdeaEdit from "./components/idea-edit/IdeaEdit";
 import ErrorBoundary from "./components/ErrorBoundary";
 import AuthGuard from "./components/guards/AuthGuard";
+// import IdeaDetails from "./components/idea-details/IdeaDetails";
+const IdeaDetails = lazy(() => import('./components/idea-details/IdeaDetails'));
+
 
 
 function App() {
@@ -25,6 +28,7 @@ function App() {
         <ErrorBoundary>      
         <AuthProvider >
             <Header />
+            <Suspense fallback={<h1>Loading...</h1>}>
 
             <Routes>
                 <Route path={Path.Home} element={<Home />}/>
@@ -45,6 +49,8 @@ function App() {
             
                 <Route path={Path.UserProfile} element={<UserProfile />}/>
             </Routes>
+
+            </Suspense>
 
             <Footer />
         </AuthProvider>
