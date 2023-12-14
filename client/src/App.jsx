@@ -16,10 +16,12 @@ import {AuthProvider} from "./contexts/authContext";
 import Path from "./paths";
 import Logout from "./components/logout/Logout";
 import IdeaEdit from "./components/idea-edit/IdeaEdit";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 
 function App() {
-    return (        
+    return ( 
+        <ErrorBoundary>      
         <AuthProvider >
             <Header />
 
@@ -41,6 +43,7 @@ function App() {
 
             <Footer />
         </AuthProvider>
+        </ErrorBoundary> 
     );
 
 }
