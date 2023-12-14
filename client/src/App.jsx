@@ -17,6 +17,7 @@ import Path from "./paths";
 import Logout from "./components/logout/Logout";
 import IdeaEdit from "./components/idea-edit/IdeaEdit";
 import ErrorBoundary from "./components/ErrorBoundary";
+import AuthGuard from "./components/guards/AuthGuard";
 
 
 function App() {
@@ -32,13 +33,17 @@ function App() {
                 <Route path={Path.Users} element={<Users />}/>
                 <Route path={Path.Register} element={<Register />}/>
                 <Route path={Path.Login} element={<Login />}/>
-                <Route path={Path.Create} element={<Create />}/>
+                <Route element={<AuthGuard />}>
+                    <Route path={Path.Create} element={<Create />}/>
+                    <Route path={Path.IdeaEdit} element={<IdeaEdit />}/>
+                    <Route path={Path.Logout} element={<Logout />}/>
+
+                </Route>
+                
 
                 <Route path={Path.IdeaDetails} element={<IdeaDetails />}/>
-                <Route path={Path.IdeaEdit} element={<IdeaEdit />}/>
             
                 <Route path={Path.UserProfile} element={<UserProfile />}/>
-                <Route path={Path.Logout} element={<Logout />}/>
             </Routes>
 
             <Footer />
