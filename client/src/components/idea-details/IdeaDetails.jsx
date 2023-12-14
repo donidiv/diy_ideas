@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo, useReducer, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import * as ideaService from '../../services/ideaService';
 
@@ -12,9 +12,11 @@ import reducer from "./commentReducer";
 import { pathToUrl } from "../../utils/pathUtils";
 import Path from "../../paths";
 
+import styles from './IdeaDetails.module.css';
 
 
 export default function IdeaDetails () {
+    const navigate = useNavigate();
     const {username, userId} = useContext(AuthContext);
     const [idea, setIdea] = useState({});
     // const [comments, setComments] = useState([]);
@@ -52,11 +54,23 @@ export default function IdeaDetails () {
             payload: newComment,
         });
     };
-    const initialValues = useMemo(() => ({
-        message: '',
-    }), []);
+    // const initialValues = useMemo(() => ({
+    //     message: '',
+    // }), []);
 
-    const {values, onChange, onSubmit} = useForm(addCommentHandler, initialValues);
+    // const {values, onChange, onSubmit} = useForm(addCommentHandler, initialValues);
+
+    const deleteButtonClickHandler = async () => {
+        const hasConfirmed = confirm(`Are you sure you want to delete ${idea.name}`);
+
+        if (hasConfirmed){
+            await ideaService.remove(ideaId);
+            navigate(Path.Ideas);
+        }
+    };
+    const {values, onChange, onSubmit} = useForm(addCommentHandler, {
+        message: '',
+    });
 
     return (
         <>
@@ -96,7 +110,7 @@ export default function IdeaDetails () {
                                             <li><Link to={pathToUrl(Path.IdeaEdit, {ideaId})} className="bi-pencil-square custom-icon me-3"></Link>Edit</li>                                            
                                         )}
                                         {userId === idea._ownerId && (
-                                        <li><Link to="/ideas/:ideaId/delete" className="bi-trash-fill custom-icon me-3"></Link>Delete</li>                                            
+                                        <li><button className={`${styles.trash} bi-trash-fill custom-icon me-3`} onClick={deleteButtonClickHandler}></button>Delete</li>                                            
                                         )}
 
                                     </ul>

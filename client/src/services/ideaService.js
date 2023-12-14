@@ -25,3 +25,5 @@ export const edit = async (ideaId, ideaData) => {
     const result = await request.put(`${base_url}/${ideaId}`, ideaData);
     return result;
 };
+
+export const remove = async (ideaId) => request.remove(`${base_url}/${ideaId}`);
