@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Path from "../paths";
 
 import * as authService from '../services/authService';
+import * as userService from '../services/userService';
 import usePersistedState from "../hooks/usePersistedState";
 
 const AuthContext = createContext();
@@ -36,6 +37,9 @@ export const AuthProvider = ({
 
 
         navigate(Path.Home);
+
+    const saveUser = await userService.create({...values});
+        console.log(saveUser);
     };
 
 
