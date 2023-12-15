@@ -121,7 +121,7 @@ export default function IdeaDetails () {
                                     
                                     <h2 className="product-title mb-0">{idea.name}</h2>
                                     
-                                    <p className="product-p">{idea.category}</p>
+                                    <p className="product-p">{idea.category?.toUpperCase()}</p>
                                 </div>
 
                                 {/* <small className="product-price text-muted ms-auto mt-auto mb-5">$25</small> */}
