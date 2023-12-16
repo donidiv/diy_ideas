@@ -14,3 +14,8 @@ export const getAll = async () => {
     console.log(result);
     return result;
 };
+
+export const getOne = async (userId) => {
+    const result = await request.get(`${base_url}/${userId}`);
+    return result;
+};

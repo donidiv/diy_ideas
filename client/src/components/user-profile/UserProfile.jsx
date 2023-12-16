@@ -1,11 +1,35 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+
+import * as userService from '../../services/userService';
+import * as ideaService from '../../services/ideaService';
+
 export default function UserProfile() {
+    const {userId} = useParams();
+    const [user, setUser] = useState({});
+    const [ideas, setIdeas] = useState({});
+    useEffect(() => {
+        userService.getOne(userId)
+            .then(setUser);
+
+        ideaService.getAll()
+            .then(setIdeas);
+
+    }, [userId]);
+
+    console.log(Object.values(ideas).length);
+    let result = '';
+    if(Object.values(ideas).length > 0){
+        result = Object.values(ideas).filter(idea => idea._ownerId === user.userId);
+    }
+    console.log(result);
     return (
         <section className="about section-padding">
             <div className="container">
                 <div className="row">
 
                     <div className="col-12 text-center">
-                        <h2 className="mb-5">User <span>x`s</span> profile information</h2>
+                        <h2 className="mb-5">User <span>{user.username}`s</span> profile information</h2>
                     </div>
 
                     <div className="col-lg-2 col-12 mt-auto mb-auto">
@@ -30,21 +54,22 @@ export default function UserProfile() {
 
                                 <div className="row">
                                     <div className="col-lg-7 col-12">
-                                        <img src="images/pim-chu-z6NZ76_UTDI-unsplash.jpeg" className="img-fluid" alt="" />
+                                        <img src={user.image} className="img-fluid" alt="" />
                                     </div>
 
                                     <div className="col-lg-5 col-12">
                                         <div className="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                            <h4 className="mb-3"><span>username</span></h4>
-                                            <h5 className="mb-3"><span>Full Name</span></h5>
+                                            <h4 className="mb-3"><span>{user.username}</span></h4>
+                                            <h5 className="mb-3"><span>{user.name}</span></h5>
 
-                                            <p>Personal info: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam corrupti libero voluptates sunt labore natus vitae non quia, nobis voluptatem ipsa molestiae perspiciatis deleniti porro totam quas, saepe facere voluptatibus id inventore? Repudiandae error ab doloribus dolorem esse aliquid nobis voluptatem quam in nemo provident recusandae praesentium, nesciunt consectetur distinctio.</p>
+                                            <p>Personal info: {user.message}</p>
 
                                             <h6>You can find me:</h6>
                                             <div>
-                                                <ul style={{ listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', gap: '2em' }}>
-                                                    <li><a href="/email" className="bi-envelope-fill custom-icon me-3">email@gmail.com</a></li>
-                                                    <li><a href="/instagram" className="bi-instagram custom-icon me-3">instagram</a></li>
+                                                <ul style={{ listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', gap: '2em' }}>
+                                                    <li><a href={user.email} className="bi-envelope-fill custom-icon me-3">{user.email}</a></li>
+                                                    <li><a href={user.instagram} className="bi-instagram custom-icon me-3">{user.instagram}</a></li>
+                                                    <li><a href={user.youtube} className="bi-youtube custom-icon me-3">{user.youtube}</a></li>
 
                                                 </ul>
                                             </div>
@@ -60,30 +85,38 @@ export default function UserProfile() {
 
                                     <div className="col-lg-5 col-12">
                                         <div className="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
-                                            <h4 className="mb-3">user`s projects</h4>
+                                            <h4 className="mb-3">{user.username}`s projects</h4>
                                         </div>
 
 
                                     </div>
 
                                 </div>
-                                <div>
+                                {Object.values(result).length === 0 && (
+                                  <div>
                                     <h2>There are no ideas yet...</h2>
-                                </div>
+                                </div>  
+                                )}
+                                
                                 <div style={{display: 'flex', flexWrap: 'wrap'}}>
-                                <div className="col-lg-4 mb-4 col-12">
+                                    {Object.values(result).map(idea => (
+                                        <>
+                                         <div className="col-lg-4 mb-4 col-12">
                                     <div className="team-thumb d-flex align-items-center">
-                                        <img src="images/people/senior-man-wearing-white-face-mask-covid-19-campaign-with-design-space.jpeg" className="img-fluid custom-circle-image team-image me-4" alt="" />
+                                        <img src={idea.image} className="img-fluid custom-circle-image team-image me-4" alt="" />
 
                                         <div className="team-info">
-                                            <h5 className="mb-0"><a href="/:ideaId/details">Don</a></h5>
-                                            <strong className="text-muted">Product, VP</strong>
+                                            <h5 className="mb-0"><Link to={`/ideas/${idea._id}`}>{idea.name}</Link></h5>
+                                            <strong className="text-muted">{idea.category}</strong>
 
                                             
 
                                         </div>
                                     </div>
                                 </div>
+                                        </>
+                                    ))}
+                               
                                 
                                
                                 
