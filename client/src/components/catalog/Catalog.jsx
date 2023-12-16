@@ -13,6 +13,7 @@ export default function Catalog () {
                 console.log(err);
             });
     }, []);
+    console.log(ideas);
     return (
         <>
         <header className="site-header section-padding d-flex justify-content-center align-items-center">

@@ -8,3 +8,9 @@ export const create = async (userData) => {
 
     return result;
 };
+
+export const getAll = async () => {
+    const result = await request.get(base_url);
+    console.log(result);
+    return result;
+};

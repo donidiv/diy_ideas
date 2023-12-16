@@ -32,13 +32,14 @@ export const AuthProvider = ({
         const result = await authService.register(values.email, values.password, values.username);
 
         setAuth(result);
+        console.log(result);
 
         localStorage.setItem('accessToken', result.accessToken);
 
 
         navigate(Path.Home);
 
-    const saveUser = await userService.create({...values});
+    const saveUser = await userService.create({...values, userId: result._id});
         console.log(saveUser);
     };
 
