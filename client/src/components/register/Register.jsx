@@ -195,7 +195,7 @@ export default function Register () {
         } else if (values[registerFormKeys.Password].length < 6){
             setErrors(state => ({
                 ...state,
-                Password: 'Description should be at least 6 characters long!',
+                Password: 'Password should be at least 6 characters long!',
             }));
         } else {
             if (errors.Password) {
