@@ -1,6 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useForm from "../../hooks/useForm";
 import AuthContext from "../../contexts/authContext";
+
+import styles from './Login.module.css';
+import { Link } from "react-router-dom";
 
 
 const LoginFormKeys = {
@@ -9,13 +12,60 @@ const LoginFormKeys = {
 };
 
 
-export default function Login () {
+export default function Login () {    
+    const [errors, setErrors] = useState({});
     const {loginSubmitHandler} = useContext(AuthContext);
     const {values, onChange, onSubmit} = useForm(loginSubmitHandler, {
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
 
     });
+    const resetFormHandler = () => {
+        setErrors({});
+    };
+
+    const emailValidator = () => {
+        console.log(values[LoginFormKeys.Email]);
+        if (values[LoginFormKeys.Email] === ''){
+            setErrors(state => ({
+                ...state,
+               Email: 'Email is required!'
+            }));
+        } else if (!values[LoginFormKeys.Email].endsWith('@gmail.com')){
+            setErrors(state => ({
+                ...state,
+                Email: 'Email is not valid!',
+            }));
+        } else {
+            if (errors.Email) {
+                setErrors(state => ({
+                    ...state,
+                    Email: '',
+                }));
+            }
+        }
+    };
+    const passwordValidator = () => {
+        console.log(values[LoginFormKeys.Password]);
+        if (values[LoginFormKeys.Password] === ''){
+            setErrors(state => ({
+                ...state,
+                Password: 'Password is required!'
+            }));
+        } else if (values[LoginFormKeys.Password].length < 6){
+            setErrors(state => ({
+                ...state,
+                Password: 'Password should be at least 6 characters long!',
+            }));
+        } else {
+            if (errors.Password) {
+                setErrors(state => ({
+                    ...state,
+                    Password: '',
+                }));
+            }
+        }
+    };
     return (
         <section className="sign-in-form section-padding">
                 <div className="container">
@@ -42,10 +92,16 @@ export default function Login () {
                                             required
                                             onChange={onChange}
 
-                                            value={values[LoginFormKeys.Email]} />
+                                            value={values[LoginFormKeys.Email]}
+                                            onBlur={emailValidator}
+                                            onClick={resetFormHandler} />
 
 
                                             <label htmlFor="email">Email address</label>
+
+                                            {errors.Email && (
+                        <p className={styles.errorMessage}>{errors.Email}</p>
+                    )}
                                         </div>
 
                                         <div className="form-floating p-0">
@@ -60,17 +116,24 @@ export default function Login () {
                                             required
                                             onChange={onChange}
 
-                                            value={values[LoginFormKeys.Password]} />
+                                            value={values[LoginFormKeys.Password]}
+                                            onBlur={passwordValidator}
+                                            onClick={resetFormHandler} />
 
 
                                             <label htmlFor="password">Password</label>
+
+                                            {errors.Password && (
+                        <p className={styles.errorMessage}>{errors.Password}</p>
+                    )}
                                         </div>
 
-                                        <button type="submit" className="btn custom-btn form-control mt-4 mb-3">
+                                        <button type="submit" className="btn custom-btn form-control mt-4 mb-3"
+                                        disabled={Object.values(errors).some(x => x)}>
                                             Login
                                         </button>
 
-                                        <p className="text-center">Don`t have an account? <a href="/register">Create One</a></p>
+                                        <p className="text-center">Don`t have an account? <Link to="/register">Create One</Link></p>
 
                                     </form>
                                 </div>
