@@ -32,7 +32,7 @@ export default function Header () {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item">
-                                <Link className="nav-link active" to="/">Home</Link>
+                                <Link className="nav-link" to="/">Home</Link>
 
                             </li>
 
