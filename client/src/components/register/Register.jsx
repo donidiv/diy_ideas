@@ -21,7 +21,7 @@ const registerFormKeys = {
 
 export default function Register () {
     const [errors, setErrors] = useState({});
-    const {registerSubmitHandler} = useContext(AuthContext);
+    const {registerSubmitHandler, serverError} = useContext(AuthContext);
     const {values, onChange, onSubmit} = useForm(registerSubmitHandler, {
         [registerFormKeys.Email]: '',
         [registerFormKeys.Name]: '',
@@ -33,6 +33,8 @@ export default function Register () {
         [registerFormKeys.Password]: '',
         [registerFormKeys.ConfirmPassword]: '',
     });
+
+    // console.log(serverError);
 
     const resetFormHandler = () => {
         setErrors({});
@@ -430,7 +432,10 @@ export default function Register () {
                                         disabled={Object.values(errors).some(x => x)}>
                                             Register
                                         </button>
-
+                                        
+                                        {serverError && (
+                                            <p className={`${styles.errorMessage} text-center`}>{serverError}</p>
+                                        )}
                                         <p className="text-center">Already have an account? Please <Link to="/login">Sign In</Link></p>
 
                                     </form>

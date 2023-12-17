@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Path from "../paths";
@@ -14,22 +14,31 @@ AuthContext.displayName = 'AuthContext';
 export const AuthProvider = ({
     children,
 }) => {
+    const [serverError, setServerError] = useState([]);
     const navigate = useNavigate();
     const [auth, setAuth] = usePersistedState('auth', {});
 
     const loginSubmitHandler = async (values) => {
-        const result = await authService.login(values.email, values.password);
+        try {
+           const result = await authService.login(values.email, values.password);
         console.log(result);
 
         setAuth(result);
 
         localStorage.setItem('accessToken', result.accessToken);
 
-        navigate(Path.Home);
+        navigate(Path.Home); 
+        setServerError([]);
+        } catch (error) {
+            console.log(error);
+            setServerError(error.message);
+        }
+        
     };
     const registerSubmitHandler = async (values) => {
         console.log(values);
-        const result = await authService.register(values.email, values.password, values.username);
+        try {
+            const result = await authService.register(values.email, values.password, values.username);
 
         setAuth(result);
         console.log(result);
@@ -38,9 +47,15 @@ export const AuthProvider = ({
 
 
         navigate(Path.Home);
+        setServerError([]);
 
     const saveUser = await userService.create({...values, userId: result._id});
         console.log(saveUser);
+        } catch (error) {
+            console.log(error);
+            setServerError(error.message);
+        }
+        
     };
 
 
@@ -54,6 +69,7 @@ export const AuthProvider = ({
         loginSubmitHandler,
         registerSubmitHandler,
         logoutHandler,
+        serverError,
         username: auth.username || auth.email,
         email: auth.email,
         userId: auth._id,

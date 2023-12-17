@@ -14,12 +14,13 @@ const LoginFormKeys = {
 
 export default function Login () {    
     const [errors, setErrors] = useState({});
-    const {loginSubmitHandler} = useContext(AuthContext);
+    const {loginSubmitHandler, serverError} = useContext(AuthContext);
     const {values, onChange, onSubmit} = useForm(loginSubmitHandler, {
         [LoginFormKeys.Email]: '',
         [LoginFormKeys.Password]: '',
 
     });
+    console.log(serverError);
     const resetFormHandler = () => {
         setErrors({});
     };
@@ -132,6 +133,10 @@ export default function Login () {
                                         disabled={Object.values(errors).some(x => x)}>
                                             Login
                                         </button>
+
+                                        {serverError && (
+                                            <p className={`${styles.errorMessage} text-center`}>{serverError}</p>
+                                        )}
 
                                         <p className="text-center">Don`t have an account? <Link to="/register">Create One</Link></p>
 

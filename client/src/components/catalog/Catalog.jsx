@@ -29,6 +29,7 @@ export default function Catalog () {
                     </div>
                 </div>
             </header>
+           
 
             <section className="products section-padding">
                 <div className="container">
