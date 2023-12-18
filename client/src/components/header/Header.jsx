@@ -79,7 +79,7 @@ export default function Header () {
                         (<div className="d-none d-lg-block">
 
 
-                        <Link to="/users/me" className="bi-person custom-icon me-3">{username}`s profile</Link>
+                        <p className="bi-person custom-icon me-3">{username}`s profile</p>
 
                     </div>)}
 
