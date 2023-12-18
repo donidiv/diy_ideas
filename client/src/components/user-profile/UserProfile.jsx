@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import * as userService from '../../services/userService';
 import * as ideaService from '../../services/ideaService';
 
+import styles from './UserProfile.module.css';
+
 export default function UserProfile() {
     const { userId } = useParams();
     const [user, setUser] = useState({});

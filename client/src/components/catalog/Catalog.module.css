@@ -1301,18 +1301,3 @@ https://www.tooplate.com/view/2127-little-fashion
   }
   
   
-
-
-
-.logo{
-    height: 2em;
-    width: 2em;
-    margin:0 0.5em;
-    border-radius: 0.5em;
-
-}
-.logo:hover{
-    padding: 0.1em;
-    /* box-shadow: 10px 5px 5px red; */
-    box-shadow: 0.1em 0.1em #ff4400;
-}

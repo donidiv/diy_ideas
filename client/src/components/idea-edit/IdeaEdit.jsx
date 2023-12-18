@@ -4,6 +4,8 @@ import * as ideaService from '../../services/ideaService';
 import { useEffect, useState } from "react";
 import Path from "../../paths";
 
+import styles from './IdeaEdit.module.css';
+
 export default function IdeaEdit () {
 
     const navigate = useNavigate();

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import styles from './Home.module.css';
 
 export default function Home() {
   return (
-    <section className="slick-slideshow">
-      <div className="slick-custom">
+    <section className={styles['slick-slideshow']}>
+      <div className={styles['slick-custom']}>
         <img
           src="images/slideshow/arno-smit-iI72r3gSwWY-unsplash.jpg"
           className="img-fluid"
@@ -14,7 +15,7 @@ export default function Home() {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-10">
-                <h1 className="slick-title">DIY Ideas</h1>
+              <h1 className={styles['slick-title']}>DIY Ideas</h1>
 
                 <p className="lead text-white mt-lg-3 mb-lg-5">
                 Welcome to DIY Ideas - Your Ultimate DIY Inspiration Hub!
