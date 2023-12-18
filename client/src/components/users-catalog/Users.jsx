@@ -38,7 +38,7 @@ export default function Users() {
                             </div>
 
                             {Object.values(users).map(user => (
-                                <>
+                                
 
                                     <div className="col-lg-4 mb-4 col-12" key={user._id}>
                                         <div className="team-thumb d-flex align-items-center">
@@ -62,7 +62,7 @@ export default function Users() {
 
                                     
 
-                                </>
+                                
                             ))}
 
                         </div>
