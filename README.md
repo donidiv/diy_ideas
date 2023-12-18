@@ -24,25 +24,39 @@ Installation:
    🔘 npm run dev - runs in development mode;
 
    🔘 http://localhost:5173 to open in the browser.
-   
+
 
 Application`s structure and endpoints with methods:
 
 1️⃣ Public part(for each user includes guests):
+
 Home page (with information about the application) ➡ "/" (GET);
+
 All ideas (list of ideas (projects)) ➡ "/ideas" (GET);
+
 All users (list of users) ➡ "/users" (GET);
+
 Details page for each idea ➡ "/ideas/:ideaId" (GET);
+
 Details page for each user ➡ "/users/:userId" (GET);
+
 Login page ➡ "/users/login" (POST for signing up);
+
 Register page ➡ "/users/register" (POST for signing in);
+
 404 page - NOT FOUND
 
+
 2️⃣ Private part (for each users after successful login):
+
 Create page ➡ "/ideas" (POST);
+
 Idea details page - options: 
+
     > write a comment (for regular user - NOT for owner or guest) ➡ "/comments"(POST) and show all comments for current idea ➡ "comments"(GET);
+
     > editing - Edit page (for owner) ➡ "/ideas/:ideaId" (PUT);
-    > deleting - (for owner) ➡ "/ideas/:ideaId" (DELETE);
+
+    > deleting - (for owner) ➡ "/ideas/:ideaId" (DELETE);    
 
 (logout ➡ "/users/logout" (GET));
