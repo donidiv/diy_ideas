@@ -38,7 +38,7 @@ export const AuthProvider = ({
     const registerSubmitHandler = async (values) => {
         console.log(values);
         try {
-            const result = await authService.register(values.email, values.password, values.username);
+            const result = await authService.register(values.email, values.password, values.username, values.image);
 
         setAuth(result);
         console.log(result);
@@ -73,6 +73,7 @@ export const AuthProvider = ({
         username: auth.username || auth.email,
         email: auth.email,
         userId: auth._id,
+        image: auth.image,
         isAuthenticated: !!auth.accessToken,
     };
 

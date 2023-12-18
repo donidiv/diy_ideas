@@ -15,13 +15,14 @@ import Path from "../../paths";
 import styles from './IdeaDetails.module.css';
 
 
-export default function IdeaDetails () {
+export default function IdeaDetails() {
     const navigate = useNavigate();
-    const {username, userId} = useContext(AuthContext);
+    const { username, userId, image, isAuthenticated } = useContext(AuthContext);
     const [idea, setIdea] = useState({});
     // const [comments, setComments] = useState([]);
     const [comments, dispatch] = useReducer(reducer, []);
-    const {ideaId} = useParams();
+    const { ideaId } = useParams();
+    console.log(comments);
 
     useEffect(() => {
         ideaService.getOne(ideaId)
@@ -48,7 +49,7 @@ export default function IdeaDetails () {
             values.message,
         );
         console.log(values.message);
-        newComment.owner = {username};
+        newComment.owner = { username, image, };
         dispatch({
             type: 'ADD_COMMENT',
             payload: newComment,
@@ -63,18 +64,19 @@ export default function IdeaDetails () {
     const deleteButtonClickHandler = async () => {
         const hasConfirmed = confirm(`Are you sure you want to delete ${idea.name}`);
 
-        if (hasConfirmed){
+        if (hasConfirmed) {
             await ideaService.remove(ideaId);
             navigate(Path.Ideas);
         }
     };
-    const {values, onChange, onSubmit} = useForm(addCommentHandler, {
+    const { values, onChange, onSubmit } = useForm(addCommentHandler, {
         message: '',
     });
+    console.log(userId !== idea._ownerId & isAuthenticated);
 
     return (
         <>
-                    <header className="site-header section-padding d-flex justify-content-center align-items-center">
+            <header className="site-header section-padding d-flex justify-content-center align-items-center">
                 <div className="container">
                     <div className="row">
 
@@ -99,28 +101,25 @@ export default function IdeaDetails () {
                         </div>
 
                         <div className="col-lg-6 col-12">
-                        <div>
-                                    <ul style={{listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', gap: '2em'}}>
+                            <div>
+                                <ul style={{ listStyleType: 'none', display: 'flex', justifyContent: 'flex-end', gap: '2em' }}>
 
-                                        {userId !== idea._ownerId & !!username && (
-                                            <li><a href="/likes" className="bi-heart custom-icon me-3"></a>0</li>
-                                        )}
-                                        {/* <li><a href="/likes" className="bi-heart-fill product-icon"></a>0</li> */}
-                                        {userId === idea._ownerId && (
-                                            <li><Link to={pathToUrl(Path.IdeaEdit, {ideaId})} className="bi-pencil-square custom-icon me-3"></Link>Edit</li>                                            
-                                        )}
-                                        {userId === idea._ownerId && (
-                                        <li><button className={`${styles.trash} bi-trash-fill custom-icon me-3`} onClick={deleteButtonClickHandler}></button>Delete</li>                                            
-                                        )}
 
-                                    </ul>
-                                </div>
+                                    {userId === idea._ownerId && (
+                                        <li><Link to={pathToUrl(Path.IdeaEdit, { ideaId })} className="bi-pencil-square custom-icon me-3"></Link>Edit</li>
+                                    )}
+                                    {userId === idea._ownerId && (
+                                        <li><button className={`${styles.trash} bi-trash-fill custom-icon me-3`} onClick={deleteButtonClickHandler}></button>Delete</li>
+                                    )}
+
+                                </ul>
+                            </div>
                             <div className="product-info d-flex">
-                                
+
                                 <div>
-                                    
+
                                     <h2 className="product-title mb-0">{idea.name}</h2>
-                                    
+
                                     <p className="product-p">{idea.category?.toUpperCase()}</p>
                                 </div>
 
@@ -134,31 +133,27 @@ export default function IdeaDetails () {
                                 <p className="lead mb-5">{idea.description}</p>
                             </div>
 
+                            {(userId !== idea._ownerId & isAuthenticated) ? (
                             <div className="row">
                                 <div className="col-lg-8 col-11 mx-auto">
-                        <form role="form" onSubmit={onSubmit}>
-                        <div className="form-floating mb-4">
-                            {/* <input type="text" name="username" placeholder="username"/> */}
-                                    <textarea id="message" name="message" value={values.message} onChange={onChange} className="form-control" placeholder="Leave a comment here" required style={{height: '160px'}}></textarea>
+                                    <form role="form" onSubmit={onSubmit}>
+                                        <div className="form-floating mb-4">
+                                            {/* <input type="text" name="username" placeholder="username"/> */}
+                                            <textarea id="message" name="message" value={values.message} onChange={onChange} className="form-control" placeholder="Leave a comment here" required style={{ height: '160px' }}></textarea>
 
-                                    <label htmlFor="message">Write a comment</label>
-                                </div>
+                                            <label htmlFor="message">Write a comment</label>
+                                        </div>
 
-                                <button type="submit" className="btn custom-btn form-control mt-4 mb-3">
+                                        <button type="submit" className="btn custom-btn form-control mt-4 mb-3">
                                             Comment
                                         </button>
-                        </form>
-                        </div>
-                        </div>
+                                    </form>
+                                </div>
+                            </div>
 
+                            ) : <></>}
                             
-
                         </div>
-
-
-                       
-                        
-
                     </div>
                 </div>
             </section>
@@ -166,45 +161,45 @@ export default function IdeaDetails () {
 
             {comments.length === 0 && (
                 <section className="testimonial section-padding">
-                <div className="container">
-                    <div className="row">
+                    <div className="container">
+                        <div className="row">
 
-                        <div className="col-lg-9 mx-auto col-11">
-                            <h2 className="text-center">There are not comments for<br /> <span>{idea.name}</span> yet...</h2>
+                            <div className="col-lg-9 mx-auto col-11">
+                                <h2 className="text-center">There are not comments for<br /> <span>{idea.name}</span> yet...</h2>
 
-                            
+
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
-            </section>
+                </section>
             )}
 
-            
+
 
             {comments.length > 0 && (
                 <section className="testimonial section-padding">
-                <div className="container">
-                    <div className="row">
+                    <div className="container">
+                        <div className="row">
 
-                    <div className="col-lg-9 mx-auto col-11">
-                            <h2 className="text-center">Comments for<br /> <span>{idea.name}</span></h2>
+                            <div className="col-lg-9 mx-auto col-11">
+                                <h2 className="text-center">Comments for<br /> <span>{idea.name}</span></h2>
 
-                            
+
+                            </div>
+
+                            {comments.map((comment) => (
+                                <CommentItem key={comment._id} {...comment} />
+                            ))}
+
                         </div>
-
-                        {comments.map((comment) => (
-                            <CommentItem key={comment._id} {...comment}/>
-                        ))}
-
                     </div>
-                </div>
-            </section>
+                </section>
 
             )}
 
-                      
 
-            </>
+
+        </>
     );
 }
