@@ -3,18 +3,28 @@
 This is a simple SPA using React for the front-end site and SoftUni practice server for the back-end site - only for educational purpose - project defense.
 
 Installation:
+
 1️⃣ Before starting the installation process, ensure that the following prerequisites are met - Node.js and npm are installed for the front-end and the back-end.
+
 
 2️⃣ Clone the repository: https://github.com/donidiv/diy_ideas.git
 
+
 3️⃣ For the server:
+
    🔘 npm install - install all packages dependencies;
+
    🔘 node server.js - start the server;
 
+
 4️⃣ For the client:
+
    🔘 npm install - install all packages dependencies;
+
    🔘 npm run dev - runs in development mode;
+
    🔘 http://localhost:5173 to open in the browser.
+   
 
 Application`s structure and endpoints with methods:
 
