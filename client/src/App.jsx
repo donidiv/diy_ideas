@@ -18,6 +18,7 @@ import Logout from "./components/logout/Logout";
 import IdeaEdit from "./components/idea-edit/IdeaEdit";
 import ErrorBoundary from "./components/ErrorBoundary";
 import AuthGuard from "./components/guards/AuthGuard";
+import Error404 from "./components/404/Error404";
 // import IdeaDetails from "./components/idea-details/IdeaDetails";
 const IdeaDetails = lazy(() => import('./components/idea-details/IdeaDetails'));
 
@@ -43,11 +44,12 @@ function App() {
                     <Route path={Path.Logout} element={<Logout />}/>
 
                 </Route>
-                
 
                 <Route path={Path.IdeaDetails} element={<IdeaDetails />}/>
             
                 <Route path={Path.UserProfile} element={<UserProfile />}/>
+
+                <Route path="*" element={<Error404/>}/>
             </Routes>
 
             </Suspense>
