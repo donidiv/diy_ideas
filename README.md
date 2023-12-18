@@ -53,10 +53,10 @@ Create page ➡ "/ideas" (POST);
 
 Idea details page - options: 
 
-    > write a comment (for regular user - NOT for owner or guest) ➡ "/comments"(POST) and show all comments for current idea ➡ "comments"(GET);
+write a comment (for regular user - NOT for owner or guest) ➡ "/comments"(POST) and show all comments for current idea ➡ "comments"(GET);
 
-    > editing - Edit page (for owner) ➡ "/ideas/:ideaId" (PUT);
+editing - Edit page (for owner) ➡ "/ideas/:ideaId" (PUT);
 
-    > deleting - (for owner) ➡ "/ideas/:ideaId" (DELETE);    
+deleting - (for owner) ➡ "/ideas/:ideaId" (DELETE);    
 
 (logout ➡ "/users/logout" (GET));
