@@ -5,7 +5,7 @@ import * as userService from '../../services/userService';
 import * as ideaService from '../../services/ideaService';
 
 export default function UserProfile() {
-    const {userId} = useParams();
+    const { userId } = useParams();
     const [user, setUser] = useState({});
     const [ideas, setIdeas] = useState({});
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function UserProfile() {
 
     console.log(Object.values(ideas).length);
     let result = '';
-    if(Object.values(ideas).length > 0){
+    if (Object.values(ideas).length > 0) {
         result = Object.values(ideas).filter(idea => idea._ownerId === user.userId);
     }
     console.log(result);
@@ -93,33 +93,34 @@ export default function UserProfile() {
 
                                 </div>
                                 {Object.values(result).length === 0 && (
-                                  <div>
-                                    <h2>There are no ideas yet...</h2>
-                                </div>  
-                                )}
-                                
-                                <div style={{display: 'flex', flexWrap: 'wrap'}}>
-                                    {Object.values(result).map(idea => (
-                                        <>
-                                         <div className="col-lg-4 mb-4 col-12">
-                                    <div className="team-thumb d-flex align-items-center">
-                                        <img src={idea.image} className="img-fluid custom-circle-image team-image me-4" alt="" />
-
-                                        <div className="team-info">
-                                            <h5 className="mb-0"><Link to={`/ideas/${idea._id}`}>{idea.name}</Link></h5>
-                                            <strong className="text-muted">{idea.category}</strong>
-
-                                            
-
-                                        </div>
+                                    <div>
+                                        <h2>There are no ideas yet...</h2>
                                     </div>
-                                </div>
-                                        </>
+                                )}
+
+                                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                                    {Object.values(result).map(idea => (
+                                        <div key={idea._id}>
+                                            <div className="col-lg-4 mb-4 col-12">
+                                                <div className="team-thumb d-flex align-items-center">
+                                                    <img src={idea.image} className="img-fluid custom-circle-image team-image me-4" alt="" />
+
+                                                    <div className="team-info">
+                                                        <h5 className="mb-0"><Link to={`/ideas/${idea._id}`}>{idea.name}</Link></h5>
+                                                        <strong className="text-muted">{idea.category}</strong>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     ))}
-                               
-                                
-                               
-                                
+                                    
+
+
+
+
                                 </div>
                             </div>
 

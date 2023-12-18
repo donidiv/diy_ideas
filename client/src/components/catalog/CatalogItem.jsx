@@ -7,7 +7,12 @@ export default function CatalogItem ({
     category,
     image,
     desription,
+    owner
 }) {
+    console.log(...(owner[0]));
+    const username = owner[0][0]?.username;
+    const user = owner[0][0]?._id;
+    console.log(username);
     return (
         <div className="col-lg-4 col-12">
                             <div className="product-thumb">
@@ -23,7 +28,7 @@ export default function CatalogItem ({
 
                                         </h5>
 
-                                        <p className="product-p"><a href="/:userId/details">owner`s name</a></p>
+                                        <p className="product-p"><Link to={`/users/${user}`}>{username}</Link></p>
                                     </div>
                                     
                                 </div>
