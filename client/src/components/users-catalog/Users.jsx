@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import * as userService from '../../services/userService';
 import { Link } from "react-router-dom";
 
+import styles from './Users.module.css';
+
 export default function Users() {
     const [users, setUsers] = useState([]);
 

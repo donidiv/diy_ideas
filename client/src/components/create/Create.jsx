@@ -124,8 +124,8 @@ export default function Create () {
     };
     return (
         <section className="sign-in-form section-padding">
-                <div className="container">
-                    <div className="row">
+                <div className={styles['container']}>
+                <div className={styles['row']}>
 
                         <div className="col-lg-8 mx-auto col-12">
 
@@ -133,7 +133,7 @@ export default function Create () {
 
                             
 
-                            <div className="row">
+                            <div className={styles['row']}>
                                 <div className="col-lg-8 col-11 mx-auto">
                                     <form role="form" onSubmit={createIdeaSubmitHandler} 
                                     // method="post"

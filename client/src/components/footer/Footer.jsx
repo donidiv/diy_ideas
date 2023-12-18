@@ -1,7 +1,8 @@
+import styles from './Footer.module.css';
 export default function Footer () {
     return (
-        <footer className="site-footer">
-            <div className="container">
+        <footer className={styles['site-footer']}>
+            <div className={styles['container']}>
                 <div className="row">
 
                     <div className="col-lg-3 col-10 me-auto mb-4">
@@ -10,22 +11,6 @@ export default function Footer () {
                         <br/>
                         <p className="copyright-text">Designed by <a href="https://github.com/donidiv" rel="noreferrer" target="_blank">donidiv</a></p>
                     </div>
-
-                    {/* <div className="col-lg-5 col-8">
-                        <h5 className="text-white mb-3">Sitemap</h5>
-
-                        <ul className="footer-menu d-flex flex-wrap">
-                            <li className="footer-menu-item"><a href="about.html" className="footer-menu-link">Story</a></li>
-
-                            <li className="footer-menu-item"><a href="#" className="footer-menu-link">Products</a></li>
-
-                            <li className="footer-menu-item"><a href="#" className="footer-menu-link">Privacy policy</a></li>
-
-                            <li className="footer-menu-item"><a href="#" className="footer-menu-link">FAQs</a></li>
-
-                            <li className="footer-menu-item"><a href="#" className="footer-menu-link">Contact</a></li>
-                        </ul>
-                    </div> */}
 
                     <div className="col-lg-3 col-4">
                         <h5 className="text-white mb-3">Social</h5>
